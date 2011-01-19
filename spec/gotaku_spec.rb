@@ -70,5 +70,17 @@ describe :Gotaku do
     it 'length should == list.length' do
       subject.length.should == @gotaku.list.length
     end
+
+    context :sample do
+      subject { @questions.sample }
+
+      it 'message should == "TestQuestion"' do
+        subject.message.should == 'TestQuestion'
+      end
+
+      it 'choices should have 5 items' do
+        subject.choices.should have(5).items
+      end
+    end
   end
 end
