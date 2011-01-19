@@ -22,9 +22,12 @@ describe :Gotaku do
     end
   end
 
+  before do
+    @gotaku = Gotaku.parse GOTAKU_FILE
+  end
+
   describe :headers do
     before do
-      @gotaku = Gotaku.parse GOTAKU_FILE
       @headers = @gotaku.headers
     end
 
@@ -50,12 +53,7 @@ describe :Gotaku do
   end
 
   describe :list do
-    before do
-      @gotaku = Gotaku.parse GOTAKU_FILE
-      @list = @gotaku.list
-    end
-
-    subject { @list }
+    subject { @list = @gotaku.list }
 
     it 'length should == headers.map(&:size).inject(:+)' do
       subject.length.should == @gotaku.headers.map(&:size).inject(:+)
