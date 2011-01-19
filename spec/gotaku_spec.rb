@@ -42,6 +42,10 @@ describe :Gotaku do
       it 'file should == "TEST.5TD"' do
         subject.file.should == 'TEST.5TD'
       end
+
+      it 'code should == "5TAKUQDT"' do
+        subject.code == '5TAKUQDT'
+      end
     end
   end
 end
