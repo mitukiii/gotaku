@@ -5,11 +5,13 @@ describe :Gotaku do
     context 'with file path' do
       subject { Gotaku.parse GOTAKU_FILE }
       it { should be_is_a Gotaku }
+      it { should be_verify }
     end
 
     context 'with file' do
       subject { Gotaku.parse open(GOTAKU_FILE) }
       it { should be_is_a Gotaku }
+      it { should be_verify }
     end
 
     context 'with invalid file path' do
