@@ -11,5 +11,11 @@ describe :Gotaku do
       subject { Gotaku.parse open(GOTAKU_FILE) }
       it { should be_is_a Gotaku }
     end
+
+    context 'with invalid file path' do
+      it do
+        lambda { Gotaku.parse INVALID_FILE }.should raise_error Errno::ENOENT
+      end
+    end
   end
 end
