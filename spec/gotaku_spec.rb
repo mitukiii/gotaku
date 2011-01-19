@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe :Gotaku do
@@ -26,7 +27,16 @@ describe :Gotaku do
       @gotaku = Gotaku.parse GOTAKU_FILE
       @headers = @gotaku.headers
     end
+
     subject { @headers }
+
     it { should have(8).items }
+
+    context :sample do
+      subject { @headers.sample }
+      it 'type should match /ジャンル\d/' do
+        subject.type.should match /ジャンル\d/
+      end
+    end
   end
 end
