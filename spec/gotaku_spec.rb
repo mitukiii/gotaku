@@ -6,5 +6,10 @@ describe :Gotaku do
       subject { Gotaku.parse GOTAKU_FILE }
       it { should be_is_a Gotaku }
     end
+
+    context 'with file' do
+      subject { Gotaku.parse open(GOTAKU_FILE) }
+      it { should be_is_a Gotaku }
+    end
   end
 end
