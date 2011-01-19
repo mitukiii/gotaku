@@ -34,8 +34,13 @@ describe :Gotaku do
 
     context :sample do
       subject { @headers.sample }
+
       it 'type should match /ジャンル\d/' do
         subject.type.should match /ジャンル\d/
+      end
+
+      it 'file should == "TEST.5TD"' do
+        subject.file.should == 'TEST.5TD'
       end
     end
   end
