@@ -20,4 +20,13 @@ describe :Gotaku do
       end
     end
   end
+
+  describe :headers do
+    before do
+      @gotaku = Gotaku.parse GOTAKU_FILE
+      @headers = @gotaku.headers
+    end
+    subject { @headers }
+    it { should have(8).items }
+  end
 end
