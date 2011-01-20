@@ -90,8 +90,10 @@ class Gotaku
       questions.each_with_index do |q, i|
         xml.question id: i do
           xml.message q.message
-          q.choices.each_with_index do |c, j|
-            xml.choice c, id: j
+          xml.choices do
+            q.choices.each_with_index do |c, j|
+              xml.choice c, id: j
+            end
           end
         end
       end
