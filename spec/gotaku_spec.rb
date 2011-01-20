@@ -145,6 +145,18 @@ describe :Gotaku do
         subject.search('question').length.should ==
           @gotaku.headers.map(&:size).inject(:+)
       end
+
+      context :sample do
+        subject { @questions.search('question').to_a.sample }
+
+        it 'at "message" text should == "TestQuestion"' do
+          subject.at('message').text.should == 'TestQuestion'
+        end
+
+        it 'search "choice" have 5 items' do
+          subject.search('choice').should have(5).items
+        end
+      end
     end
   end
 end
