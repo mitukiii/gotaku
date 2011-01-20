@@ -3,6 +3,11 @@ $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'gotaku'
 
 ARGV.each do |path|
-  gotaku = Gotaku.parse path
-  puts gotaku.to_xml
+  begin
+    gotaku = Gotaku.parse path
+    raise unless gotaku.verify?
+    puts gotaku.to_xml
+  rescue
+    puts "Invalid path or format. \"#{path}\""
+  end
 end
