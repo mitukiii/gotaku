@@ -92,5 +92,26 @@ describe :Gotaku do
     subject { Nokogiri::XML @xml }
 
     it { @xml.should match /^<\?xml/ }
+
+    it 'at "gotaku" should not be nil' do
+      subject.at('gotaku').should_not be_nil
+    end
+
+    it 'at "headers" should not be nil' do
+      subject.at('headers').should_not be_nil
+    end
+
+    it 'at "questions" should not be nil' do
+      subject.at('questions').should_not be_nil
+    end
+
+    it 'search "headers header" have 8 items' do
+      subject.search('headers header').should have(8).items
+    end
+
+    it 'search "questions question" length == headers.map(&:size).inject(:+)' do
+      subject.search('questions question').length.should ==
+        @gotaku.headers.map(&:size).inject(:+)
+    end
   end
 end
