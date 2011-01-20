@@ -53,7 +53,7 @@ describe :Gotaku do
   end
 
   describe :list do
-    subject { @list = @gotaku.list }
+    subject { @gotaku.list }
 
     it 'length should == headers.map(&:size).inject(:+)' do
       subject.length.should == @gotaku.headers.map(&:size).inject(:+)
@@ -87,9 +87,10 @@ describe :Gotaku do
   describe :to_xml do
     before do
       @xml = @gotaku.to_xml
+      @doc = Nokogiri::XML @xml
     end
 
-    subject { Nokogiri::XML @xml }
+    subject { @doc }
 
     it { @xml.should match /^<\?xml/ }
 
@@ -97,21 +98,33 @@ describe :Gotaku do
       subject.at('gotaku').should_not be_nil
     end
 
-    it 'at "headers" should not be nil' do
-      subject.at('headers').should_not be_nil
+    context :headers do
+      before do
+        @headers = @doc.at('headers')
+      end
+
+      subject { @headers }
+
+      it { should_not be_nil }
+
+      it 'search "header" have 8 items' do
+        subject.search('header').should have(8).items
+      end
     end
 
-    it 'at "questions" should not be nil' do
-      subject.at('questions').should_not be_nil
-    end
+    context :questions do
+      before do
+        @questions = @doc.at('questions')
+      end
 
-    it 'search "headers header" have 8 items' do
-      subject.search('headers header').should have(8).items
-    end
+      subject { @questions }
 
-    it 'search "questions question" length == headers.map(&:size).inject(:+)' do
-      subject.search('questions question').length.should ==
-        @gotaku.headers.map(&:size).inject(:+)
+      it { should_not be_nil }
+
+      it 'search "question" length == headers.map(&:size).inject(:+)' do
+        subject.search('question').length.should ==
+          @gotaku.headers.map(&:size).inject(:+)
+      end
     end
   end
 end
