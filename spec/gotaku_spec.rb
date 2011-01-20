@@ -110,6 +110,26 @@ describe :Gotaku do
       it 'search "header" have 8 items' do
         subject.search('header').should have(8).items
       end
+
+      context :sample do
+        subject { @headers.search('header').to_a.sample }
+
+        it 'get_attribute "id" should not be nil' do
+          subject.get_attribute('id').should_not be_nil
+        end
+
+        it 'at "type" text should match /ジャンル\d/' do
+          subject.at('type').text.should match /ジャンル\d/
+        end
+
+        it 'at "file" text should == "TEST.5TD"' do
+          subject.at('file').text.should == 'TEST.5TD'
+        end
+
+        it 'at "code" text should == "5TAKUQDT"' do
+          subject.at('code').text == '5TAKUQDT'
+        end
+      end
     end
 
     context :questions do
