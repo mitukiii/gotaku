@@ -83,4 +83,14 @@ describe :Gotaku do
       end
     end
   end
+
+  describe :to_xml do
+    before do
+      @xml = @gotaku.to_xml
+    end
+
+    subject { Nokogiri::XML @xml }
+
+    it { @xml.should match /^<\?xml/ }
+  end
 end
