@@ -30,7 +30,8 @@ class Gotaku
 
     @headers = []
     MAX_ENTRY.times do |i|
-      @file.seek(i * Header::LENGTH, IO::SEEK_SET)
+      position = Header::LENGTH * i
+      @file.seek(position, IO::SEEK_SET)
       buffer = @file.read(Header::LENGTH)
       @headers << Header.parse(buffer)
     end
