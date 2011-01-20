@@ -6,6 +6,39 @@ Gotaku is a 5tq parser.
 
     $ gem install gotaku
 
+== EXAMPLE
+
+    require 'gotaku'
+
+    gotaku = Gotaku.parse './data.5tq'
+
+    gotaku.verify?          # => true
+    gotaku.headers.length   # => 8
+    gotaku.questions.length # => 64
+
+    header = gotaku.headers.first
+    header.verify? # => true
+    header.index   # => 0
+    header.type    # => "Genre 1"
+    header.file    # => "TEST.5TD"
+    header.code    # => "5TAKUQDX"
+
+    question = gotaku.questions.first
+    question.genre   # => 0
+    question.index   # => 0
+    question.message # => "Some question"
+    question.choices # => ["Choice 1", "Choice 2", "Choice 3", "Choice 4", "Choice 5"]
+
+    question = gotaku.questions.last
+    question.genre   # => 7
+    question.index   # => 7
+
+    gotaku.to_xml # =>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <gotaku>
+      <headers>
+    ...
+
 == Copyright
 
 Copyright (C) 2011 Kazuya Takeshima
