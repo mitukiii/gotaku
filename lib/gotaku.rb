@@ -43,12 +43,12 @@ class Gotaku
     return @questions if @questions
 
     @questions = []
-    headers.each_with_index do |h, i|
+    headers.each do |h|
       h.size.times do |j|
         position = Header::LENGTH * h.skip + Question::LENGTH * j
         @file.seek(position, IO::SEEK_SET)
         buffer = @file.read(Question::LENGTH)
-        @questions << Question.parse(buffer, genre: i, index: j)
+        @questions << Question.parse(buffer, genre: h.index, index: j)
       end
     end
 
