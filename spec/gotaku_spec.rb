@@ -38,6 +38,10 @@ describe :Gotaku do
     context :sample do
       subject { @headers.sample }
 
+      it 'index should be is a numeric' do
+        subject.index.should be_is_a Numeric
+      end
+
       it 'type should match /ジャンル\d/' do
         subject.type.should match /ジャンル\d/
       end
