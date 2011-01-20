@@ -48,7 +48,7 @@ class Gotaku
         position = Header::LENGTH * h.skip + Question::LENGTH * j
         @file.seek(position, IO::SEEK_SET)
         buffer = @file.read(Question::LENGTH)
-        @questions << Question.parse(buffer)
+        @questions << Question.parse(buffer, genre: i, index: j)
       end
     end
 
