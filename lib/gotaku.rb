@@ -69,9 +69,33 @@ class Gotaku
   end
 
   def to_xml(options = {})
+    options = {
+      indent: 2,
+      margin: 0
+    }.update(options)
+
     xml = Builder::XmlMarkup.new(options)
     xml.instruct! :xml, encoding: 'UTF-8'
     xml.gotaku do
+    xml.headers do
+      headers.each_with_index do |h, i|
+        xml.header id: i do
+          xml.type h.type
+          xml.file h.file
+          xml.code h.code
+        end
+      end
+    end
+    xml.questions do
+      questions.each_with_index do |q, i|
+        xml.question id: i do
+          xml.message q.message
+          q.choices.each_with_index do |c, j|
+            xml.choice c, id: j
+          end
+        end
+      end
+    end
     end
   end
 end
