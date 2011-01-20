@@ -5,13 +5,15 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gotaku}
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kazuya Takeshima"]
-  s.date = %q{2011-01-19}
-  s.description = %q{5tq parser}
+  s.date = %q{2011-01-20}
+  s.default_executable = %q{gotaku}
+  s.description = %q{Gotaku is a 5tq parser.}
   s.email = %q{mail@mitukiii.jp}
+  s.executables = ["gotaku"]
   s.extra_rdoc_files = [
     "README.rdoc"
   ]
@@ -24,6 +26,8 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "bin/gotaku",
+    "gotaku.gemspec",
     "lib/gotaku.rb",
     "lib/gotaku/header.rb",
     "lib/gotaku/question.rb",
@@ -47,18 +51,24 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<builder>, ["~> 3.0.0"])
       s.add_development_dependency(%q<rspec>, ["~> 2.3.0"])
+      s.add_development_dependency(%q<nokogiri>, ["~> 1.4.4"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
+      s.add_dependency(%q<builder>, ["~> 3.0.0"])
       s.add_dependency(%q<rspec>, ["~> 2.3.0"])
+      s.add_dependency(%q<nokogiri>, ["~> 1.4.4"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_dependency(%q<rcov>, [">= 0"])
     end
   else
+    s.add_dependency(%q<builder>, ["~> 3.0.0"])
     s.add_dependency(%q<rspec>, ["~> 2.3.0"])
+    s.add_dependency(%q<nokogiri>, ["~> 1.4.4"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
     s.add_dependency(%q<rcov>, [">= 0"])
