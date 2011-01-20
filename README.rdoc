@@ -1,4 +1,4 @@
-= gotaku
+= Gotaku
 
 Gotaku is a 5tq parser.
 
