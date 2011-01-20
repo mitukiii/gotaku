@@ -70,7 +70,7 @@ class Gotaku
     xml.gotaku do
     xml.headers do
       headers.each_with_index do |h, i|
-        xml.header id: i do
+        xml.header id: h.index do
           xml.type h.type
           xml.file h.file
           xml.code h.code
@@ -78,12 +78,12 @@ class Gotaku
       end
     end
     xml.questions do
-      questions.each_with_index do |q, i|
-        xml.question id: i do
+      questions.each do |q|
+        xml.question id: q.genre, index: q.index do
           xml.message q.message
           xml.choices do
-            q.choices.each_with_index do |c, j|
-              xml.choice c, id: j
+            q.choices.each_with_index do |c, i|
+              xml.choice c, id: i
             end
           end
         end
