@@ -33,7 +33,7 @@ class Gotaku
       position = Header::LENGTH * i
       @file.seek(position, IO::SEEK_SET)
       buffer = @file.read(Header::LENGTH)
-      @headers << Header.parse(buffer)
+      @headers << Header.parse(buffer, index: i)
     end
 
     @headers

@@ -4,15 +4,16 @@ class Gotaku
     FORMAT = 'a16vvva12a8a214'
     DEFAULT = ['noname', 0, 0, 0, 'noname', '5TAKUQDT', 0]
 
-    def self.parse(bulk)
+    def self.parse(bulk, options = {})
       new do
         @data = bulk ? bulk.unpack(FORMAT) : QUESTION
         @type, @pass, @size, @skip, @file, @code, @fill = @data
         @type, @file, @code = [@type, @file, @code].map {|l| l.toutf8.strip}
+        @index = options[:index]
       end
     end
 
-    attr_reader :type, :pass, :size, :skip, :file, :code, :fill
+    attr_reader :type, :pass, :size, :skip, :file, :code, :fill, :index
 
     def initialize(&block)
       instance_eval(&block) if block_given?
