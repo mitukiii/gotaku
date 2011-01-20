@@ -55,10 +55,13 @@ class Gotaku
     return @questions if @questions
 
     @questions = []
-    list.each do |l|
-      @file.seek(l, IO::SEEK_SET)
-      buffer = @file.read(Question::LENGTH)
-      @questions << Question.parse(buffer)
+    headers.each_with_index do |h, i|
+      h.size.times do |j|
+        position = Header::LENGTH * h.skip + Question::LENGTH * j
+        @file.seek(position, IO::SEEK_SET)
+        buffer = @file.read(Question::LENGTH)
+        @questions << Question.parse(buffer)
+      end
     end
 
     @questions
