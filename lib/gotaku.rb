@@ -38,19 +38,6 @@ class Gotaku
     @headers
   end
 
-  def list
-    return @list if @list
-
-    @list = []
-    headers.each do |h|
-      h.size.times do |i|
-        @list << h.skip * Header::LENGTH + Question::LENGTH * i
-      end
-    end
-
-    @list
-  end
-
   def questions
     return @questions if @questions
 

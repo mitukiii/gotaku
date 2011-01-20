@@ -52,14 +52,6 @@ describe :Gotaku do
     end
   end
 
-  describe :list do
-    subject { @gotaku.list }
-
-    it 'length should == headers.map(&:size).inject(:+)' do
-      subject.length.should == @gotaku.headers.map(&:size).inject(:+)
-    end
-  end
-
   describe :questions do
     before do
       @questions = @gotaku.questions
@@ -67,8 +59,8 @@ describe :Gotaku do
 
     subject { @questions }
 
-    it 'length should == list.length' do
-      subject.length.should == @gotaku.list.length
+    it 'length should == headers.map(&:size).inject(:+)' do
+      subject.length.should == @gotaku.headers.map(&:size).inject(:+)
     end
 
     context :sample do
