@@ -1,4 +1,5 @@
 require 'kconv'
+require 'builder'
 require 'gotaku/header'
 require 'gotaku/question'
 require 'gotaku/util'
@@ -65,5 +66,12 @@ class Gotaku
 
   def verify?
     headers.all?(&:verify?)
+  end
+
+  def to_xml(options = {})
+    xml = Builder::XmlMarkup.new(options)
+    xml.instruct! :xml, encoding: 'UTF-8'
+    xml.gotaku do
+    end
   end
 end
