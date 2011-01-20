@@ -70,6 +70,14 @@ describe :Gotaku do
     context :sample do
       subject { @questions.sample }
 
+      it 'genre should be is a Numeric' do
+        subject.genre.should be_is_a Numeric
+      end
+
+      it 'index should be is a Numeric' do
+        subject.index.should be_is_a Numeric
+      end
+
       it 'message should == "TestQuestion"' do
         subject.message.should == 'TestQuestion'
       end
